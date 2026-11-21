@@ -1,0 +1,314 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#100b20">
+  <title>PA - Personal Assistant</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app">
+
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-icon">✦</div>
+        <div>
+          <h1>PA<span>.</span></h1>
+          <small>PERSONAL ASSISTANT</small>
+        </div>
+      </div>
+      <button class="profile-btn" aria-label="Profile">👤</button>
+    </header>
+
+    <main>
+      <!-- HOME -->
+      <section id="home" class="page active">
+
+        <div class="welcome">
+          <p id="todayDate">YOUR PERSONAL SPACE</p>
+          <h2 id="greeting">Hey there! 👋</h2>
+          <p>I'm happy to see you. What shall we accomplish today?</p>
+        </div>
+
+        <div class="assistant-card">
+          <div class="orb">
+            <div class="orb-inner">✦</div>
+          </div>
+          <div class="assistant-info">
+            <span class="online"><i></i> ONLINE</span>
+            <h3>I'm PA ❤️</h3>
+            <p>Your little companion, here to make life easier.</p>
+            <button class="primary-btn" onclick="showPage('chat')">
+              Talk to me <span>→</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="section-heading">
+          <div>
+            <h3>Your overview</h3>
+            <p>A little progress goes a long way.</p>
+          </div>
+          <span class="sparkle">✧</span>
+        </div>
+
+        <div class="stats">
+          <div class="stat-card">
+            <span>📋</span>
+            <h2 id="totalTasks">0</h2>
+            <p>Total tasks</p>
+          </div>
+          <div class="stat-card">
+            <span>✅</span>
+            <h2 id="completedTasks">0</h2>
+            <p>Completed</p>
+          </div>
+          <div class="stat-card">
+            <span>⏰</span>
+            <h2 id="totalReminders">0</h2>
+            <p>Reminders</p>
+          </div>
+        </div>
+
+        <div class="section-heading">
+          <div>
+            <h3>Today's tasks</h3>
+            <p>Let's get things done.</p>
+          </div>
+          <button class="text-btn" onclick="showPage('tasks')">See all →</button>
+        </div>
+
+        <div id="homeTasks" class="task-list"></div>
+
+        <div class="section-heading">
+          <div>
+            <h3>Coming up</h3>
+            <p>Your next reminders.</p>
+          </div>
+          <button class="text-btn" onclick="showPage('reminders')">View all →</button>
+        </div>
+
+        <div id="homeReminders" class="reminder-list"></div>
+
+      </section>
+
+      <!-- TASKS -->
+      <section id="tasks" class="page">
+
+        <div class="page-title">
+          <p>STAY ORGANIZED</p>
+          <h2>My Tasks 📋</h2>
+          <span>Every small step counts.</span>
+        </div>
+
+        <div class="add-card">
+          <input id="taskInput" type="text"
+            placeholder="What do you need to do?">
+          <button onclick="addTask()">＋</button>
+        </div>
+
+        <div class="filter-row">
+          <button class="filter active" data-filter="all">All</button>
+          <button class="filter" data-filter="pending">Pending</button>
+          <button class="filter" data-filter="completed">Completed</button>
+        </div>
+
+        <div id="allTasks" class="task-list"></div>
+
+      </section>
+
+      <!-- REMINDERS -->
+      <section id="reminders" class="page">
+
+        <div class="page-title">
+          <p>NEVER FORGET</p>
+          <h2>Reminders ⏰</h2>
+          <span>I'll help you remember what's important.</span>
+        </div>
+
+        <div class="form-card">
+          <h3>Create a reminder</h3>
+          <input id="reminderInput" type="text"
+            placeholder="What should I remind you about?">
+
+          <label for="reminderDate">Date</label>
+          <input id="reminderDate" type="date">
+
+          <label for="reminderTime">Time</label>
+          <input id="reminderTime" type="time">
+
+          <button class="primary-btn full-btn" onclick="addReminder()">
+            Create reminder ✨
+          </button>
+        </div>
+
+        <div class="section-heading">
+          <div>
+            <h3>Your reminders</h3>
+            <p>Things worth remembering.</p>
+          </div>
+        </div>
+
+        <div id="allReminders" class="reminder-list"></div>
+
+      </section>
+
+      <!-- CHAT -->
+      <section id="chat" class="page">
+
+        <div class="page-title">
+          <p>YOUR PERSONAL COMPANION</p>
+          <h2>Talk to PA 💜</h2>
+          <span>I'm listening. Tell me anything.</span>
+        </div>
+
+        <div class="chat-container">
+          <div class="chat-header">
+            <div class="mini-orb">✦</div>
+            <div>
+              <strong>PA Assistant</strong>
+              <small><i></i> Here with you</small>
+            </div>
+          </div>
+
+          <div id="chatMessages" class="chat-messages">
+            <div class="message pa-message">
+              Heyyyy! 🥰 I'm PA. What's on your mind today?
+            </div>
+          </div>
+
+          <div class="chat-input">
+            <input id="chatInput" type="text"
+              placeholder="Message your assistant..."
+              autocomplete="off">
+            <button type="button"
+  <button type="button" onclick="sendMessage()">➤</button>
+            </button>
+            </button>
+          </div>
+          <p class="chat-note">PA's starter assistant · Offline mode</p>
+        </div>
+
+      </section>
+<!-- Your PROFILE PICTURE -->
+<div class="profile-picture-section">
+
+  <div class="profile-avatar">
+    <img id="paProfilePicture"
+         src=""
+         alt="Your profile picture">
+
+    <span id="paAvatarPlaceholder">👤</span>
+  </div>
+
+  <h3>Your Profile Picture</h3>
+  <p>Make PA feel more like yours 💜</p>
+
+  <input
+    type="file"
+    id="paPictureInput"
+    accept="image/*"
+    onchange="savePAProfilePicture(event)"
+  >
+
+  <button class="primary-btn"
+          type="button"
+          onclick="document.getElementById('paPictureInput').click()">
+    📷 Choose Picture
+  </button>
+
+  <button class="delete-btn"
+          type="button"
+          onclick="removePAProfilePicture()">
+    Remove Picture
+  </button>
+
+</div>
+      <!-- PROFILE -->
+      <section id="profile" class="page">
+
+        <div class="page-title">
+          <p>MAKE PA YOURS</p>
+          <h2>Your Profile 👤</h2>
+          <span>A little space just for you.</span>
+        </div>
+
+        <div class="profile-card">
+          <div class="profile-avatar">👤</div>
+          <h3 id="profileName">Your name</h3>
+          <p>PA FREE MEMBER PLAN</p>
+        </div>
+
+        <div class="form-card">
+          <h3>Your name</h3>
+          <input id="nameInput" type="text" placeholder="Enter Your name">
+          <button class="primary-btn full-btn" onclick="saveName()">
+            Save name
+          </button>
+        </div>
+
+<div class="form-card" id="teachPA">
+  <h3>✦ Teach PA</h3>
+  <p>Give PA a new phrase and teach it how to respond.</p>
+
+  <label for="teachPhrase">What might someone say?</label>
+  <input id="teachPhrase" type="text"
+    placeholder="e.g. Nothing much">
+
+  <label for="teachResponse">How should PA respond?</label>
+  <textarea id="teachResponse"
+    placeholder="e.g. Wanna find something fun to do?"
+    rows="3"></textarea>
+
+  <button class="primary-btn full-btn"
+    type="button" onclick="teachPA()">
+    Teach PA 💜
+  </button>
+
+  <h3 style="margin-top:24px;">My lessons</h3>
+  <div id="paLessons">
+    <p>No lessons yet. Teach PA something!</p>
+  </div>
+</div>
+
+         <span>★★ PA PREMIUM</span>
+          <h3>More possibilities await.</h3>
+          <p>Advanced AI that teaches itself, voice assistance and smart scheduling are planned for a future release.</p>
+          <h5>COMING SOON IN THE NEXT UPDATE.</h5>
+      </section>
+    </main>
+
+    <!-- BOTTOM NAVIGATION -->
+    <nav class="bottom-nav">
+      <button class="nav-item active" data-page="home"
+        onclick="showPage('home')">
+        <span>⌂</span><small>Home</small>
+      </button>
+      <button class="nav-item" data-page="tasks"
+        onclick="showPage('tasks')">
+        <span>☷</span><small>Tasks</small>
+      </button>
+      <button class="nav-item" data-page="chat"
+        onclick="showPage('chat')">
+        <span>✧</span><small>Chat</small>
+      </button>
+      <button class="nav-item" data-page="reminders"
+        onclick="showPage('reminders')">
+        <span>◷</span><small>Reminders</small>
+      </button>
+      <button class="nav-item" data-page="profile"
+        onclick="showPage('profile')">
+        <span>♙</span><small>Profile</small>
+      </button>
+    </nav>
+
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
